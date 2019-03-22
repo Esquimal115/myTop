@@ -4,7 +4,6 @@ rm -f ./procs.log 2> /dev/null
 rm -f ./procsOrdenados.log 2>/dev/null
 
 
-
 #calculamos el uso de la cpu al principio del primer bucle
 
 cpuTotalInicial=$(awk '/cpu/ {print $2+$3+$4+$5+$6+$7+$8}' </proc/stat | head -1)
@@ -35,7 +34,6 @@ porcUsada=$(echo "scale = 3; ($memUsada/$memTotal)*100" | bc | awk '{printf "%.2
 cont=1
 
 
-
 while [ $cont -le $totalDir ];
 do
 start=$(date +%s.%N)
@@ -56,7 +54,6 @@ echo 2>/dev/null
 else
 tiempoTotal1[$cont]=$((${modoUser[$cont]}+${modoNucleo[$cont]}))
 fi
-
 
 
 let cont=cont+1
@@ -156,7 +153,6 @@ let cont=cont+1
 if [ $cont -eq $totalDir ]; then
 
 echo -e
-
 echo -e "\033[1mTareas\e[m" $totalDir
 echo -e KiB Mem: "\033[1mMemoria Total\e[m" $memTotal, "\033[1mMemoria Libre\e[m" $memLibre, "\033[1mMemoria Usada\e[m" $memUsada, "\033[1mMemoria en Buffer/Cache\e[m" $cachBuffer, "\033[1mMemoria Disponible\e[m" $memDisponible
 echo -e Mem Intercambio KiB: "\033[1mMemoria Total\e[m" $swapTotal, "\033[1mMemoria Libre\e[m" $swapFree, "\033[1mMemoria Usada\e[m" $swapUse
